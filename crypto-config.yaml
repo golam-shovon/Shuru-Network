@@ -13,11 +13,12 @@ PeerOrgs:
 
     Users: 
       Count: 1
+      
   - Name: Beyond
     Domain: beyond.shuru-network.com
     EnableNodeOUs: true
     Template:
-      Count: 2
+      Count: 1
 
     Users: 
       Count: 1

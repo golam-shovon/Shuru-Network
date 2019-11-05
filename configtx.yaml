@@ -1,0 +1,89 @@
+Profiles:
+    OrdererGenesis:
+      Capabilities:
+        <<: *ChannelCapabilities
+      Orderer:
+        <<: *OrdererDefaults
+        Organizations:
+          - *OrdererOrg
+        Capabilities:
+          <<: *OrdererCapabilities
+      Consortiums:
+        MyFirstConsortium:
+          Organizations:
+            - *Shuru 
+            - *Beyond
+            
+    channeldemo:
+      Consortium: MyFirstConsortium
+      Application:
+        <<: *ApplicationDefaults
+        Organizations:
+          - *Shuru
+          - *Beyond
+          
+        Capabilities:
+          <<: *ApplicationCapabilities
+  
+
+
+
+# Organizations
+
+Organizations:
+
+  - &OrdererOrg
+    Name: OrderingService
+    ID: OrdererMSP
+    MSPDir: crypto-config/ordererOrganizations/shuru-network.com/msp
+
+  - &Shuru
+    Name: ShuruMSP
+    ID: ShuruMSP
+    MSPDir: crypto-config/peerOrganizations/shuru.shuru-network.com/msp
+    AnchorPeers:
+      - Host: peer0.shuru.shuru-network.com
+        Port: 7051
+
+  - &Beyond
+    Name: BeyondMSP
+    ID: BeyondMSP
+    MSPDir: crypto-config/peerOrganizations/beyond.shuru-network.com/msp
+    AnchorPeers:
+      - Host: peer0.beyond.shuru-network.com
+        Port: 7051
+
+
+# Orderer
+
+Orderer: &OrdererDefaults
+
+  OrdererType: solo
+  Addresses: 
+    - orderer.shuru-network.com:7050
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  Kafka:
+    Brokers: 
+      - 127.0.0.1:9092
+
+  Organizations:
+
+# Application
+
+Application: &ApplicationDefaults
+
+  Organizations:
+
+# Capabilities
+
+Capabilities:
+    Global: &ChannelCapabilities
+        V1_1: true
+    Orderer: &OrdererCapabilities
+        V1_1: true
+    Application: &ApplicationCapabilities
+        V1_1: true
