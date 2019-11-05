@@ -1,0 +1,24 @@
+OrdererOrgs:
+  - Name: OrderingService
+    Domain: shuru-network.com
+    Specs:
+      - Hostname: orderer
+
+PeerOrgs:
+  - Name: Shuru
+    Domain: shuru.shuru-network.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+
+    Users: 
+      Count: 1
+  - Name: Beyond
+    Domain: beyond.shuru-network.com
+    EnableNodeOUs: true
+    Template:
+      Count: 2
+
+    Users: 
+      Count: 1
+
