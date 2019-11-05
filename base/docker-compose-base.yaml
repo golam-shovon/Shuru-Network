@@ -44,27 +44,7 @@ services:
         - ../crypto-config/peerOrganizations/shuru.shuru-network.com/peers/peer0.shuru.shuru-network.com/tls:/etc/hyperledger/fabric/tls
         - peer0.shuru.shuru-network.com:/var/hyperledger/production
     ports:
-
-  peer0.customer.shuru-network.com:
-    container_name: peer0.customer.shuru-network.com
-    extends:
-      file: peer-base.yaml
-      service: peer-base
-    environment:
-      - CORE_PEER_ID=peer0.customer.shuru-network.com
-      - CORE_PEER_ADDRESS=peer0.customer.shuru-network.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.customer.shuru-network.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.customer.shuru-network.com:7051
-      - CORE_PEER_LOCALMSPID=CustomerMSP
-    volumes:
-        - /var/run/:/host/var/run/
-        - ../crypto-config/peerOrganizations/customer.shuru-network.com/peers/peer0.customer.shuru-network.com/msp:/etc/hyperledger/fabric/msp
-        - ../crypto-config/peerOrganizations/customer.shuru-network.com/peers/peer0.customer.shuru-network.com/tls:/etc/hyperledger/fabric/tls
-        - peer0.customer.shuru-network.com:/var/hyperledger/production
-    ports:
-      - 11051:7051d
       - 7051:7051
-
   
 
   peer0.beyond.shuru-network.com:
